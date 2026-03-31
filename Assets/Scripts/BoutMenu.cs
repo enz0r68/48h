@@ -6,7 +6,12 @@ public class BoutMenu : MonoBehaviour
     
     public void Start()
     {
-        SceneManager.LoadScene("1");
+        
+    }
+
+    public void SGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Quitt()

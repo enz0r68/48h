@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour
     public InputActionAsset moveAction;
 
     private CharacterController controller;
-    private float xRotation = 0f;
     private Vector3 velocity;
 
     void Awake()
