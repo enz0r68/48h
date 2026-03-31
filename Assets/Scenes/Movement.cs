@@ -6,12 +6,15 @@ public class Movement : MonoBehaviour
     [Header("Réglages")]
     public float playerSpeed = 5.0f;
     public float mouseSensitivity = 20.0f;
+    public float jumpHeight = 1.5f;
+    public float gravity = -9.00f;
 
     [Header("Configuration Input")]
     public InputActionAsset moveAction;
 
     private CharacterController controller;
-    private float xRotation = 0f; 
+    private float xRotation = 0f;
+    private Vector3 velocity;
 
     void Awake()
     {
@@ -33,10 +36,23 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Vector2 input = moveAction.FindAction("MoveAction").ReadValue<Vector2>();
-        
+
         Vector3 moveRelative = transform.forward * input.y + transform.right * input.x;
-        moveRelative.y = 0; // On empêche de s'envoler
-        controller.Move(moveRelative * playerSpeed * Time.deltaTime);
+        moveRelative.y = 0; 
+
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; 
+        }
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && controller.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        Vector3 motion = moveRelative * playerSpeed + new Vector3(0, velocity.y, 0);
+        controller.Move(motion * Time.deltaTime);
 
         Vector2 lookInput = moveAction.FindAction("LookAction").ReadValue<Vector2>();
 
