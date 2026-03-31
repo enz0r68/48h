@@ -85,7 +85,6 @@ public class Spawn : MonoBehaviour
         //Debug.Log("nb : " + Object + " score" + score + " Time Left: " + time);
     }
 
-
     public void Timer()
     {
         time -= Time.deltaTime;
@@ -94,6 +93,4 @@ public class Spawn : MonoBehaviour
             Destroy(obj2);
         }
     }
-    
-    
 }

@@ -20,9 +20,4 @@ public class end : MonoBehaviour
             Debug.Log("You win");
         }
     }
-
-
 }
-
-
-
