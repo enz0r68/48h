@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,16 +22,42 @@ public class Spawn : MonoBehaviour
     public GameObject obj8;
     public GameObject obj9;*/
 
-    int number;
+    public GameObject porte1;
+    public GameObject porte2;  
+    public GameObject porte3;
+    public GameObject porte4;
+    public int number;
     int Object;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   /*RANDOM NUMBER
-         number = Random.Range(1, 6);
-         Debug.Log("Nombre is: " + number);
-        */
+    {   // RANDOM NUMBER
+        // number = Random.Range(0, 3);
+        number = 2;
+        porte1.SetActive(false);
+        porte2.SetActive(false);
+        porte3.SetActive(false);
+        porte4.SetActive(false);
+        
         Object = 0;
         time = 7;
+        switch (number)
+        {
+            case 0:
+                porte1.SetActive(true);
+                break;
+            case 1:
+                porte2.SetActive(true);
+                break;
+            case 2:
+                porte3.SetActive(true);
+                break;
+            case 3:
+                porte4.SetActive(true);
+                break;
+            case 4:
+                default:
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -54,8 +81,8 @@ public class Spawn : MonoBehaviour
                 obj1IS = false;
             }  
         }
-
-        Debug.Log("nb : " + Object + " score" + score + " Time Left: " + time);
+        // Debug.Log("Nombre is: " + number);
+        //Debug.Log("nb : " + Object + " score" + score + " Time Left: " + time);
     }
 
 

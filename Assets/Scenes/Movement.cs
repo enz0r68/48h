@@ -54,16 +54,6 @@ public class Movement : MonoBehaviour
         Vector3 motion = moveRelative * playerSpeed + new Vector3(0, velocity.y, 0);
         controller.Move(motion * Time.deltaTime);
 
-        Vector2 lookInput = moveAction.FindAction("LookAction").ReadValue<Vector2>();
-
-        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
-        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(xRotation, transform.localRotation.eulerAngles.y + mouseX, 0);
-
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             Debug.Log("Touche Z pressée !");
